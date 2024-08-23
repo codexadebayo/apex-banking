@@ -33,6 +33,7 @@ declare type User = {
   dwollaCustomerId: string;
   firstName: string;
   lastName: string;
+  userName: string,
   address1: string;
   city: string;
   state: string;
@@ -80,6 +81,20 @@ declare type Transaction = {
   senderBankId: string;
   receiverBankId: string;
 };
+
+declare type Chart = {
+  id: string;
+  title: string;
+  type: string; // e.g., 'bar', 'line', 'pie', etc.
+  labels: string[]; // Labels for the data points
+  data: number[] | { [key: string]: number }; // Data associated with the labels, can be an array or a key-value pair
+  createdAt: string; // Date when the chart was created
+  updatedAt: string; // Date when the chart was last updated
+  options?: { [key: string]: any }; // Additional optional chart configuration options (e.g., colors, axis options)
+  relatedAccountId?: string; // Link to an account, if relevant
+};
+
+
 
 declare type Bank = {
   $id: string;
@@ -214,7 +229,7 @@ declare interface FooterProps {
 
 declare interface RightSidebarProps {
   user: User;
-  transactions: Transaction[];
+  charts: Chart[];
   banks: Bank[] & Account[];
 }
 
